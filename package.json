@@ -1,0 +1,21 @@
+{
+  "name": "api_59160225",
+  "version": "0.0.1",
+  "description": "author satthabut loungsanam",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node.js",
+    "api",
+    "mysql"
+  ],
+  "author": "satthabut loungsanam",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  }
+}
