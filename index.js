@@ -38,6 +38,11 @@ app.get('/get_year', (req, res) => {
         res.send(result)
     })
 })
+app.get('/get_all', (req, res) => {
+    CE_model.M_rg_CourseOpen.get_all(function(result){
+        res.send(result)
+    })
+})
     /*
     * get_term
     * รับค่าปีการศึกษา

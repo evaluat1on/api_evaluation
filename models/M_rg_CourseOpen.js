@@ -14,3 +14,13 @@ exports.get_table_subject = function(year_number,term_number,study_year,curId,ca
         return callback(result)
     })
 }
+exports.get_all = function(callback){
+    var sql = "SELECT crsCode,crsName " +
+                "FROM rg_CourseOpen "+ 
+                "LEFT JOIN rg_Course ON rg_CourseOpen.coCrsId = rg_Course.crsId "
+    connect_db.db.query(sql, function(err,result){
+        if(err) throw err
+        console.log(result)
+        return callback(result)
+    })
+}
