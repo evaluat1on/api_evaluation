@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
-const port = 80
-var bodyParser = require('body-parser');
+const port = 1235
+const bodyParser = require('body-parser');
 	app.use(bodyParser.json());
 	app.use(bodyParser.urlencoded({
     		extended: true
@@ -34,7 +34,8 @@ app.use(function (req, res, next) {
     * @Create Date 2018-12-22
     */
 app.get('/get_year', (req, res) => {
-    CE_model.M_rg_realstudyplan.get_year(function(result){
+    CE_model.M_rg_realstudyplan.get_year(function(err,result){
+        console.log(err,result)
         res.send(result)
     })
 })
@@ -46,7 +47,7 @@ app.get('/get_all', (req, res) => {
     /*
     * get_term
     * รับค่าปีการศึกษา
-    * input -
+    * input -ß
     * output -
     * @author Nontakorn and Santisuk
     * @Create Date 2018-12-22
@@ -55,6 +56,7 @@ app.post('/get_term', (req, res) => {
     CE_model.M_rg_realstudyplan.get_term(req.body.year_number,function(result){
         console.log(result)
         res.send(result)
+
     })
 })
     /*
@@ -272,9 +274,30 @@ app.post('/get_sum_score_personal', (req, res) => {
     * @author satthabut
     * @Create Date 2018-12-22
     */
-app.put('/update_Sumscore', (req, res) => {
-    CE_model.M_gs_student_score.update_Sumscore(req.body.ss_id,req.body.ss_score,req.body.ss_grade,function(result){
+app.post('/update_Sumscore', (req, res) => {
+    CE_model.M_gs_student_score.update_Sumscore(req.body.ss_id,req.body.ss_grade,function(result){
         console.log(result)
+        res.send(result)
+    })
+})
+app.post('/get_student_list', (req, res) => {
+    CE_model.M_gs_student_score.get_student_list(req.body.coId,function(result){
+        console.log(result)
+        res.send(result)
+    })
+})
+app.get('/get_student_all_year', (req, res) => {
+    CE_model.M_rg_student.get_student_all_year(function(result){
+        res.send(result)
+    })
+})
+app.get('/get_teacher', (req, res) => {
+    CE_model.M_rg_student.get_teacher(function(result){
+        res.send(result)
+    })
+})
+app.get('/get_count_coid', (req, res) => {
+    CE_model.M_rg_CourseOpen.get_count_coid(function(result){
         res.send(result)
     })
 })

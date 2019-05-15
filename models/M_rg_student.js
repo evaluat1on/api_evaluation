@@ -80,3 +80,20 @@ exports.get_student_all_score = function(year_number,term_number,study_year,curI
         return callback(result)
     })
 }
+exports.get_student_all_year = function(callback){
+    var sql = "SELECT COUNT(sgsId) AS count_std "+
+				"FROM rg_StudyGroupStudent" 
+    connect_db.db.query(sql, function(err,result){
+        if(err) throw err
+        console.log(result)
+        return callback(result)
+    })
+}
+exports.get_teacher = function(callback){
+    var sql = "SELECT COUNT(prsId) AS person FROM rg_Person" 
+    connect_db.db.query(sql, function(err,result){
+        if(err) throw err
+        console.log(result)
+        return callback(result)
+    })
+}

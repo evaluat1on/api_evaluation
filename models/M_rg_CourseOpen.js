@@ -24,3 +24,11 @@ exports.get_all = function(callback){
         return callback(result)
     })
 }
+exports.get_count_coid = function(callback){
+    var sql = "SELECT COUNT(coId) as sum FROM rg_CourseOpen"
+    connect_db.db.query(sql, function(err,result){
+        if(err) throw err
+        console.log(result)
+        return callback(result)
+    })
+}

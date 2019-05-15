@@ -13,7 +13,7 @@ exports.get_year = function(callback){
     connect_db.db.query(sql, function(err,result){
         if(err) throw err
         console.log(result)
-        return callback(result)
+        return callback(err,result)
     })
 }
 exports.get_term = function(year_number,callback){
@@ -21,6 +21,7 @@ exports.get_term = function(year_number,callback){
     connect_db.db.query(sql, function(err,result){
         if(err) throw err
         console.log(result)
+        
         return callback(result)
     })
 }

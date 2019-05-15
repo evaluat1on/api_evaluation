@@ -27,11 +27,22 @@ exports.get_criteria = function(coId,callback){
         return callback(result)
     })
 }
-exports.update_Sumscore = function(ss_id,ss_score,ss_grade,callback){
+exports.update_Sumscore = function(ss_id,ss_grade,callback){
     var sql = "UPDATE 	gs_student_score "+
-               "SET ss_score ="+ss_score+" ,"+	
-                        "ss_grade ="+ss_grade+" "+
+               "SET ss_grade ="+ss_grade+" "+
                         "WHERE ss_id = "+ss_id+" "
+    connect_db.db.query(sql, function(err,result){
+        if(err) throw err
+        console.log(result)
+        return callback(result)
+    })
+}
+exports.get_student_list = function(coId,callback){
+    var sql = "SELECT rg_Student.stdCode,CONCAT(rg_Prefix.pfName,' ',rg_Student.stdName,' ',rg_Student.stdSurname) as full_name, gs_student_score.ss_id,gs_student_score.ss_grade "+
+				"FROM gs_student_score "+
+				"LEFT JOIN rg_Student ON gs_student_score.ss_stdid = rg_Student.stdId "+
+				"LEFT JOIN rg_Prefix ON rg_Student.stdPfId = rg_Prefix.pfId "+
+				"WHERE gs_student_score.ss_coId ="+coId+" "
     connect_db.db.query(sql, function(err,result){
         if(err) throw err
         console.log(result)
